@@ -12,6 +12,7 @@ import { styles } from "./styles";
 import IlustrationImg from "../../assets/illustration.png";
 import { ButtonIcon } from "../../components/ButtonIcon";
 import { useNavigation } from "@react-navigation/native";
+import { Background } from "../../components/Background";
 
 export function SignIn() {
   // const [text, setText] = useState('lorem');
@@ -23,27 +24,29 @@ export function SignIn() {
   }
 
   return (
-    <View style={styles.container}>
-      <Image
-        source={IlustrationImg}
-        style={styles.image}
-        resizeMode="stretch"
-      />
+    <Background>
+      <View style={styles.container}>
+        <Image
+          source={IlustrationImg}
+          style={styles.image}
+          resizeMode="stretch"
+        />
 
-      <View style={styles.content}>
-        <Text style={styles.title}>
-          Connect and organize{`\n`}
-          your {`\n`}
-          gameplays!{`\n`}
-        </Text>
-        <Text style={styles.subtitle}>
-          Community {`\n`}
-          and more{`\n`}
-          by: AirtonB{`\n`}
-        </Text>
+        <View style={styles.content}>
+          <Text style={styles.title}>
+            Connect and organize{`\n`}
+            your {`\n`}
+            gameplays!{`\n`}
+          </Text>
+          <Text style={styles.subtitle}>
+            Community {`\n`}
+            and more{`\n`}
+            by: AirtonB{`\n`}
+          </Text>
 
-        <ButtonIcon onPress={handleSignIn} title="Entrar no discord" />
+          <ButtonIcon onPress={handleSignIn} title="Entrar no discord" />
+        </View>
       </View>
-    </View>
+    </Background>
   );
 }

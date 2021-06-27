@@ -9,9 +9,12 @@ import { ListHeader } from "../../components/ListHeader";
 import { FlatList } from "react-native-gesture-handler";
 import { Appointment } from "../../components/Appointment";
 import { ListDivider } from "../../components/ListDivider";
+import { Background } from "../../components/Background";
+import { useNavigation } from "@react-navigation/native";
 
 export function Home() {
   const [category, setCategory] = useState("");
+  const navigation = useNavigation();
 
   const appointments = [
     {
@@ -39,14 +42,24 @@ export function Home() {
       description: "Today we gonna rocks!",
     },
   ];
+
   function handleCategorySelect(categoryId: string) {
     return categoryId === category ? setCategory("") : setCategory(categoryId);
   }
+
+  function handleAppointmentDetails() {
+    navigation.navigate("AppointmentDetails");
+  }
+
+  function handleAppointmentCreate() {
+    navigation.navigate("AppointmentCreate");
+  }
+
   return (
-    <View>
+    <Background>
       <View style={styles.header}>
         <Profile />
-        <ButtonAdd />
+        <ButtonAdd onPress={handleAppointmentCreate} />
       </View>
 
       <View>
@@ -63,10 +76,14 @@ export function Home() {
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <ListDivider />}
           renderItem={({ item }) => (
-            <Appointment data={item} style={styles.matches} />
+            <Appointment
+              onPress={handleAppointmentDetails}
+              data={item}
+              style={styles.matches}
+            />
           )}
         />
       </View>
-    </View>
+    </Background>
   );
 }
