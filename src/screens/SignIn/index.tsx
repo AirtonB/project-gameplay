@@ -1,26 +1,21 @@
-import React, { useState } from "react";
-import { RectButton } from "react-native-gesture-handler";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Image,
-  StatusBar,
-} from "react-native";
+import React from "react";
+import { Text, View, Image, Alert, ActivityIndicator } from "react-native";
 import { styles } from "./styles";
 import IlustrationImg from "../../assets/illustration.png";
 import { ButtonIcon } from "../../components/ButtonIcon";
-import { useNavigation } from "@react-navigation/native";
 import { Background } from "../../components/Background";
+import { useAuth } from "../../hooks/auth";
+import { theme } from "../../global/theme";
 
 export function SignIn() {
-  // const [text, setText] = useState('lorem');
+  const { loading, signIn } = useAuth();
 
-  const navigation = useNavigation();
-
-  function handleSignIn() {
-    navigation.navigate("Home");
+  async function handleSignIn() {
+    try {
+      await signIn();
+    } catch (error: any) {
+      Alert.alert(error);
+    }
   }
 
   return (
@@ -44,7 +39,11 @@ export function SignIn() {
             by: AirtonB{`\n`}
           </Text>
 
-          <ButtonIcon onPress={handleSignIn} title="Entrar no discord" />
+          {loading ? (
+            <ActivityIndicator color={theme.colors.primary} />
+          ) : (
+            <ButtonIcon onPress={handleSignIn} title="Entrar no discord" />
+          )}
         </View>
       </View>
     </Background>

@@ -62,28 +62,28 @@ export function Home() {
         <ButtonAdd onPress={handleAppointmentCreate} />
       </View>
 
-      <View>
-        <CategorySelect
-          categorySelected={category}
-          setCategory={handleCategorySelect}
-        />
-      </View>
+      <CategorySelect
+        categorySelected={category}
+        setCategory={handleCategorySelect}
+      />
       <View style={styles.content}>
         <ListHeader title="Scheduled matches" subTitle="Total 6" />
-
-        <FlatList
-          data={appointments}
-          keyExtractor={(item) => item.id}
-          ItemSeparatorComponent={() => <ListDivider />}
-          renderItem={({ item }) => (
-            <Appointment
-              onPress={handleAppointmentDetails}
-              data={item}
-              style={styles.matches}
-            />
-          )}
-        />
       </View>
+
+      <FlatList
+        data={appointments}
+        keyExtractor={(item) => item.id}
+        ItemSeparatorComponent={() => <ListDivider />}
+        contentContainerStyle={{ paddingBottom: 69 }}
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item }) => (
+          <Appointment
+            onPress={handleAppointmentDetails}
+            data={item}
+            style={styles.matches}
+          />
+        )}
+      />
     </Background>
   );
 }

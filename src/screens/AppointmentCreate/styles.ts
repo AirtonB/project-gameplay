@@ -15,16 +15,15 @@ export const styles = StyleSheet.create({
     marginTop: 32,
   },
   select: {
+    flexDirection: "row",
     width: "100%",
     height: 68,
-    flexDirection: "row",
     borderColor: theme.colors.secondary50,
     borderWidth: 1,
-    borderRadius: 4,
+    borderRadius: 8,
     alignItems: "center",
     paddingRight: 25,
     overflow: "hidden",
-    // backgroundColor: "red",
   },
   selectBody: {
     flex: 1,
@@ -33,7 +32,8 @@ export const styles = StyleSheet.create({
   image: {
     width: 64,
     height: 68,
-    backgroundColor: theme.colors.secondary50,
+    backgroundColor: theme.colors.secondary40,
+    borderColor: theme.colors.secondary50,
     borderWidth: 1,
     borderRadius: 8,
   },

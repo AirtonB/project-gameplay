@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { StatusBar } from "react-native";
+import { LogBox, StatusBar } from "react-native";
 import { Inter_400Regular, Inter_500Medium } from "@expo-google-fonts/inter";
 import {
   Rajdhani_500Medium,
@@ -11,8 +11,12 @@ import { Background } from "./src/components/Background";
 
 import { Routes } from "./src/routes";
 import { Profile } from "./src/components/Profile";
+import { AuthProvider } from "./src/hooks/auth";
 // import { SignIn } from './src/screens/signIn';
 
+LogBox.ignoreLogs([
+  "You are not currently signed in to Expo on your development machine.",
+]);
 export default function App() {
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
@@ -32,7 +36,9 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      <Routes />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </Background>
   );
 }
