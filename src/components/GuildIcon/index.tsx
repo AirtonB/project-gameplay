@@ -1,10 +1,24 @@
 import React from "react";
 import { styles } from "./styles";
-import { Image } from "react-native";
-import { RectButton, RectButtonProps } from "react-native-gesture-handler";
+import { Image, View } from "react-native";
+import DiscordSvg from "../../assets/discord.svg";
+const { CDN_IMAGE_ENV } = process.env;
 
-export function GuildIcon() {
-  const uri =
-    "https://gamerssuffice.com/wp-content/uploads/2019/11/How-to-add-bots-to-discord-500x405.jpg";
-  return <Image source={{ uri }} style={styles.image} resizeMode="cover" />;
+type Props = {
+  guildId: string;
+  iconId: string | null;
+};
+
+export function GuildIcon({ guildId, iconId }: Props) {
+  const uri = `${CDN_IMAGE_ENV}/icons/${guildId}/${iconId}.png`;
+
+  return (
+    <View style={styles.container}>
+      {iconId ? (
+        <Image source={{ uri }} style={styles.image} resizeMode="cover" />
+      ) : (
+        <DiscordSvg width={40} height={40} />
+      )}
+    </View>
+  );
 }
